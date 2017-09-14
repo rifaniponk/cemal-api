@@ -1,6 +1,6 @@
 # Cemal - Checklist Amalan Harian
 
-[![Build Status](https://api.travis-ci.org/rifaniponk/cemal-api.svg)](https://api.travis-ci.org/rifaniponk/cemal-api)
+[![Build Status](https://api.travis-ci.org/rifaniponk/cemal-api.svg)](https://travis-ci.org/rifaniponk/cemal-api)
 
 Cemal adalah aplikasi untuk memudahkan seorang muslim mencatat amalan hariannya. 
 
