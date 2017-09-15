@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners;
+namespace Cemal\Listeners;
 
-use App\Events\ExampleEvent;
+use Cemal\Events\ExampleEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

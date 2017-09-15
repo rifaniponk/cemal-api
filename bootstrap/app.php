@@ -40,12 +40,12 @@ $app = new Laravel\Lumen\Application(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    Cemal\Exceptions\Handler::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    Cemal\Console\Kernel::class
 );
 
 /*
@@ -60,11 +60,11 @@ $app->singleton(
 */
 
 // $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
+//    Cemal\Http\Middleware\ExampleMiddleware::class
 // ]);
 
 // $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
+//     'auth' => Cemal\Http\Middleware\Authenticate::class,
 // ]);
 
 /*
@@ -78,9 +78,9 @@ $app->singleton(
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+// $app->register(Cemal\Providers\AppServiceProvider::class);
+// $app->register(Cemal\Providers\AuthServiceProvider::class);
+// $app->register(Cemal\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ $app->singleton(
 */
 
 $app->router->group([
-    'namespace' => 'App\Http\Controllers',
+    'namespace' => 'Cemal\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });

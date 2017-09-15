@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace Cemal\Providers;
 
-use App\User;
+use Cemal\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 

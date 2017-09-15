@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Cemal\Events;
 
 use Illuminate\Queue\SerializesModels;
 

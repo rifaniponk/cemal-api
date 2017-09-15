@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Cemal\Http\Middleware;
 
 use Closure;
 
