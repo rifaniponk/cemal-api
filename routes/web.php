@@ -11,6 +11,14 @@
 |
 */
 
+$router->group(['prefix' => 'api/v1', 'namespace' => '\Cemal\Http\Controllers'], function($app)
+{
+	$app->group(['namespace' => 'Auth'], function($app)
+	{
+		$app->post('register', 'RegisterController@index');
+	});
+});
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
