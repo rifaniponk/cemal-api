@@ -81,6 +81,15 @@ $app->singleton(
 // $app->register(Cemal\Providers\AppServiceProvider::class);
 // $app->register(Cemal\Providers\AuthServiceProvider::class);
 // $app->register(Cemal\Providers\EventServiceProvider::class);
+$app->register(\Illuminate\Mail\MailServiceProvider::class);
+
+/*
+|--------------------------------------------------------------------------
+| Enable Configuration
+|--------------------------------------------------------------------------
+|
+*/
+$app->configure('mail');
 
 /*
 |--------------------------------------------------------------------------

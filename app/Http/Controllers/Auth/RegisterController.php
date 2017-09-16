@@ -27,8 +27,10 @@ class RegisterController extends Controller
         try {
             $data = $request->all();
             $data['verification_code'] = substr(md5(Date('Y-m-d H:i:s')),0,20);
+            $data['register_ip'] = $request->ip();
             
             $user = $this->userService->create($data);
+
             return $this->response($user, 201);
         } catch(\Exception $e) {
             return $this->handleError($e);

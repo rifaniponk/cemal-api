@@ -13,26 +13,38 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'users';
+    public $timestamps = true;
     protected $fillable = [
-        'name', 'email', 'password'
-    ];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
+        'name',
+        'email',
         'password',
+        'role',
+        'avatar',
+        'register_date',
+        'last_login_date',
+        'status',
+        'phone',
+        'address',
+        'biography',
+        'register_ip',
+        'activation_date',
+        'verified',
+        'verification_code'
     ];
-
+    protected $hidden = [
+        'password', 'remember_token', 'verification_code'
+    ];
     protected $casts = [
         'id' => 'uuid',
+        'role' => 'integer',
+        'status' => 'integer',
+        'verified' => 'boolean',
+    ];
+    protected $dates = [
+        'register_date',
+        'last_login_date',
+        'activation_date',
     ];
 
     public static function boot()

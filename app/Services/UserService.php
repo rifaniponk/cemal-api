@@ -5,6 +5,7 @@ namespace Cemal\Services;
 use Cemal\Models\User;
 use Cemal\Exceptions\FormException;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserService
 {
@@ -20,8 +21,24 @@ class UserService
         }
 
 		$data['password'] = Hash::make($data['password']);
-		$user = User::create($data);
-		return $user;
+		$data['register_date'] = new \DateTime;
+
+		try{
+            \DB::beginTransaction();
+
+			$user = User::create($data);
+			if (isset($data['verification_code']) && $data['verification_code']){
+            	$a = Mail::to($user->email)->send(
+            		new \Cemal\Mails\Auth\RegisterConfirmation($user)
+            	);
+			}
+
+            \DB::commit();
+			return $user;
+        } catch(\Exception $e){
+            \DB::rollBack();
+            throw $e;
+        }
 	}
 
 	/**
