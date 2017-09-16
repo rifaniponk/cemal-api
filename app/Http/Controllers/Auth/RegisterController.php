@@ -29,7 +29,7 @@ class RegisterController extends Controller
             $data['verification_code'] = substr(md5(Date('Y-m-d H:i:s')),0,20);
             
             $user = $this->userService->create($data);
-            return response()->json($user, 201);
+            return $this->response($user, 201);
         } catch(\Exception $e) {
             return $this->handleError($e);
         }
