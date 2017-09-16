@@ -28,7 +28,7 @@ class UserService
 
 			$user = User::create($data);
 			if (isset($data['verification_code']) && $data['verification_code']){
-            	$a = Mail::to($user->email)->send(
+            	Mail::to($user->email)->send(
             		new \Cemal\Mails\Auth\RegisterConfirmation($user)
             	);
 			}
@@ -51,7 +51,7 @@ class UserService
 	}
 
 	/**
-	 * get validation rules
+	 * validate data
 	 * @param  array  $data 
 	 * @param  array  $group
 	 * @param  array  $param

@@ -17,6 +17,9 @@ $router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], fun
 	{
 		$app->post('register', 'RegisterController@index');
 		$app->get('register/{verification_code}', 'RegisterController@verify');
+
+		$app->post('password/reset', 'PasswordController@reset');
+		$app->post('password/email', 'PasswordController@requestReset');
 	});
 });
 
