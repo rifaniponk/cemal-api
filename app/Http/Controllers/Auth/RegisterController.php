@@ -25,10 +25,13 @@ class RegisterController extends Controller
      */
     public function index(Request $request){
         try {
-            $user = $this->userService->create($request->all());
+            $data = $request->all();
+            $data['verification_code'] = substr(md5(Date('Y-m-d H:i:s')),0,20);
+            
+            $user = $this->userService->create($data);
             return response()->json($user, 201);
-        } catch(\Exception $e){
-            return response()->json($e->getMessage(), 500);
+        } catch(\Exception $e) {
+            return $this->handleError($e);
         }
     }
 }

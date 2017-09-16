@@ -42,4 +42,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             $model->id = (string) Uuid::generate(4);
         });
     }
+
+    public static function getValidationRules(array $group=array(), array $param=array())
+    {
+        $rules = [
+            'name' => 'required|max:255|min:4',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ];
+
+        if (in_array('update', $group)){
+            $rules['email'] .= ',email,'.$param['id'];
+            $rules['password'] = 'min:6|confirmed';
+        }
+
+        return $rules;
+    }
 }
