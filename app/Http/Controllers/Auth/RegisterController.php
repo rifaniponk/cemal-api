@@ -5,19 +5,24 @@ namespace Cemal\Http\Controllers\Auth;
 use Cemal\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Cemal\Services\UserService;
+use Cemal\Services\AuthService;
 
 class RegisterController extends Controller
 {
     private $userService;
+    private $authService;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(UserService $userService)
-    {
+    public function __construct(
+        UserService $userService,
+        AuthService $authService
+    ){
         $this->userService = $userService;
+        $this->authService = $authService;
     }
 
     /**
@@ -32,6 +37,21 @@ class RegisterController extends Controller
             $user = $this->userService->create($data);
 
             return $this->response($user, 201);
+        } catch(\Exception $e) {
+            return $this->handleError($e);
+        }
+    }
+
+    /**
+     * verify registration confirmation
+     * @param  string $verification_code 
+     */
+    public function verify($verification_code){
+        try {
+            
+            $this->authService->verifyRegistration($verification_code);
+
+            return $this->response(null, 200);
         } catch(\Exception $e) {
             return $this->handleError($e);
         }
