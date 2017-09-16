@@ -11,7 +11,7 @@
 |
 */
 
-$router->group(['prefix' => 'api/v1', 'namespace' => '\Cemal\Http\Controllers'], function($app)
+$router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], function($app)
 {
 	$app->group(['namespace' => 'Auth'], function($app)
 	{
