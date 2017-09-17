@@ -7,6 +7,16 @@ use Cemal\Exceptions\NotFoundException;
 use Cemal\Exceptions\NotValidException;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
+/**
+ * @SWG\Swagger(
+ *   schemes={"http"},
+ *   basePath="/v1",
+ *   info={
+ *     "title"="Cemal API Documentation",
+ *     "version"="1.0.0"
+ *   }
+ * )
+ */
 class Controller extends BaseController
 {
     /**

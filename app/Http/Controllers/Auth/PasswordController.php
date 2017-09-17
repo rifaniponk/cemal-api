@@ -16,6 +16,15 @@ class PasswordController extends Controller
         $this->authService = $authService;
     }
 
+    /**
+     * @SWG\Post(
+     *     path="/password/reset",
+     *     summary="Reset password",
+     *     @SWG\Parameter( name="body", in="body", required=true, @SWG\Schema(ref="#/definitions/ResetPassword") ),
+     *     @SWG\Response(response="200", description="ok"),
+     *     @SWG\Response(response="400", description="bad input")
+     * )
+     */
     public function reset(Request $request)
     {
         try {
@@ -27,6 +36,15 @@ class PasswordController extends Controller
         }
     }
 
+    /**
+     * @SWG\Post(
+     *     path="/password/email",
+     *     summary="Request reset password",
+     *     @SWG\Parameter( name="body", in="body", required=true, @SWG\Schema(ref="#/definitions/RequestResetPassword") ),
+     *     @SWG\Response(response="200", description="ok"),
+     *     @SWG\Response(response="404", description="not found")
+     * )
+     */
     public function requestReset(Request $request)
     {
         try {

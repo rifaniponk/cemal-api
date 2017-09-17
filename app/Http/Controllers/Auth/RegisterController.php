@@ -26,7 +26,13 @@ class RegisterController extends Controller
     }
 
     /**
-     * register user via normal form.
+     * @SWG\Post(
+     *     path="/register",
+     *     summary="register user",
+     *     @SWG\Parameter( name="body", in="body", required=true, @SWG\Schema(ref="#/definitions/NewUser") ),
+     *     @SWG\Response(response="201", description="created"),
+     *     @SWG\Response(response="400", description="bad input")
+     * )
      */
     public function index(Request $request)
     {
@@ -44,8 +50,13 @@ class RegisterController extends Controller
     }
 
     /**
-     * verify registration confirmation.
-     * @param  string $verification_code
+     * @SWG\Get(
+     *     path="/register/{verification_code}",
+     *     summary="confirm registration",
+     *     @SWG\Parameter( name="verification_code", in="path", type="string"),
+     *     @SWG\Response(response="200", description="OK"),
+     *     @SWG\Response(response="404", description="not found")
+     * )
      */
     public function verify($verification_code)
     {
