@@ -9,6 +9,42 @@
         "http"
     ],
     "paths": {
+        "/login": {
+            "post": {
+                "summary": "login",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "wrong email/password"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "summary": "logout",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                }
+            }
+        },
         "/password/reset": {
             "post": {
                 "summary": "Reset password",
@@ -178,6 +214,23 @@
                 "email": {
                     "format": "string",
                     "example": "test@test.com"
+                }
+            },
+            "type": "object"
+        },
+        "Login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "format": "string",
+                    "example": "test@test.com"
+                },
+                "password": {
+                    "format": "string",
+                    "example": "123456789"
                 }
             },
             "type": "object"

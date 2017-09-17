@@ -4,10 +4,12 @@ namespace Cemal\Services;
 
 use Cemal\Models\User;
 use Cemal\Models\PasswordReset;
+use Cemal\Models\UserToken;
 use Cemal\Exceptions\FormException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Cemal\Exceptions\NotFoundException;
+use Cemal\Exceptions\NotValidException;
 
 class AuthService
 {
@@ -96,5 +98,70 @@ class AuthService
         $user->forceFill([
             'password' => Hash::make($data['password']),
         ])->save();
+    }
+
+    /**
+     * login
+     * @param  array  $data 
+     * @return UserToken
+     */
+    public function login(array $data)
+    {
+        $validator = \Validator::make($data, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            throw new FormException($validator);
+        }
+
+        $user = User::where('email', $data['email'])->first();
+
+        if (! $user) {
+            throw new NotFoundException('User');
+        }
+
+        if (!Hash::check($data['password'], $user->password)){
+            throw new NotValidException("email atau password salah");
+        }
+
+        $token = UserToken::create([
+            'user_id' => $user->id,
+            'api_token' => str_random(60),
+            'expired_at' => null,
+        ]);
+
+        return $token;
+    }
+
+    /**
+     * logout
+     */
+    public function logout()
+    {
+        $user = \Auth::user();
+        UserToken::where('user_id', $user->id)->delete();
+    }
+
+    /**
+     * get logged in user
+     * @param  string $token
+     * @return User
+     */
+    public function getLoggedInUser($token)
+    {
+        if (!$token) return null;
+
+        $ut = UserToken::where('api_token', $token)->first();
+        if (!$ut) return null;
+
+        $now = new \DateTime;
+        if (!$ut->expired_at){
+            return $ut->user;
+        } else if ($ut->expired_at <= $now){
+            return $ut->user;
+        }
+        return null;
     }
 }

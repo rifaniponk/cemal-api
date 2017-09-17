@@ -36,3 +36,13 @@
  *   @SWG\Property(format="string", property="email", example="test@test.com"),
  * )
  */
+
+/**
+ * @SWG\Definition(
+ *   definition="Login",
+ *   type="object",
+ *   required={ "email", "password" },
+ *   @SWG\Property(format="string", property="email", example="test@test.com"),
+ *   @SWG\Property(format="string", property="password", example="123456789"),
+ * )
+ */
