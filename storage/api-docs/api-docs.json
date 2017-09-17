@@ -1,0 +1,186 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Cemal API Documentation",
+        "version": "1.0.0"
+    },
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/password/reset": {
+            "post": {
+                "summary": "Reset password",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ResetPassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "bad input"
+                    }
+                }
+            }
+        },
+        "/password/email": {
+            "post": {
+                "summary": "Request reset password",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RequestResetPassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "summary": "register user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "400": {
+                        "description": "bad input"
+                    }
+                }
+            }
+        },
+        "/register/{verification_code}": {
+            "get": {
+                "summary": "confirm registration",
+                "parameters": [
+                    {
+                        "name": "verification_code",
+                        "in": "path",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "NewUser": {
+            "required": [
+                "email",
+                "password",
+                "password_confirmation",
+                "name"
+            ],
+            "properties": {
+                "email": {
+                    "format": "string",
+                    "example": "test@test.com"
+                },
+                "password": {
+                    "format": "string",
+                    "example": "123456789"
+                },
+                "password_confirmation": {
+                    "format": "string",
+                    "example": "123456789"
+                },
+                "name": {
+                    "format": "string",
+                    "example": "I am Test"
+                },
+                "phone": {
+                    "format": "string",
+                    "example": "093839434"
+                },
+                "address": {
+                    "format": "string",
+                    "example": "Jalan Anomali no 90"
+                },
+                "avatar": {
+                    "format": "string",
+                    "example": "https://openclipart.org/image/2400px/svg_to_png/177482/ProfilePlaceholderSuit.png"
+                },
+                "biography": {
+                    "format": "string",
+                    "example": "Iam Software Engineer who lives in Indonesia"
+                }
+            },
+            "type": "object"
+        },
+        "ResetPassword": {
+            "required": [
+                "email",
+                "password",
+                "password_confirmation",
+                "token"
+            ],
+            "properties": {
+                "email": {
+                    "format": "string",
+                    "example": "test@test.com"
+                },
+                "password": {
+                    "format": "string",
+                    "example": "123456789"
+                },
+                "password_confirmation": {
+                    "format": "string",
+                    "example": "123456789"
+                },
+                "token": {
+                    "format": "string",
+                    "example": "rSQt8eGH0LwU27qvqJQq02fTfbI83MN4YKBGHEOchjnYDQrAkyWbHDX0c9Bc"
+                }
+            },
+            "type": "object"
+        },
+        "RequestResetPassword": {
+            "required": [
+                "email"
+            ],
+            "properties": {
+                "email": {
+                    "format": "string",
+                    "example": "test@test.com"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

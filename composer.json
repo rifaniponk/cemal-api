@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "doctrine/dbal": "^2.6",
         "webpatser/laravel-uuid": "^3.0",
-        "illuminate/mail": "^5.5"
+        "illuminate/mail": "^5.5",
+        "darkaonline/swagger-lume": "5.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.7",
