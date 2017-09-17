@@ -5,7 +5,7 @@ namespace Cemal\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class PasswordReset
+ * Class PasswordReset.
  */
 class PasswordReset extends Model
 {
@@ -15,13 +15,13 @@ class PasswordReset extends Model
     public $incrementing = false;
     protected $primaryKey = [
         'email',
-        'token'
+        'token',
     ];
 
     protected $fillable = [
         'email',
         'token',
-        'created_at'
+        'created_at',
     ];
 
     protected $guarded = [];

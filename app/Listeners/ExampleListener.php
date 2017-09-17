@@ -3,8 +3,6 @@
 namespace Cemal\Listeners;
 
 use Cemal\Events\ExampleEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ExampleListener
 {
