@@ -37,7 +37,7 @@
  * )
  */
 
-/**
+/*
  * @SWG\Definition(
  *   definition="Login",
  *   type="object",

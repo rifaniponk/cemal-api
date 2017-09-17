@@ -39,8 +39,9 @@ class UserToken extends Model
         return $this->belongsTo('Cemal\Models\User');
     }
 
-    public function increaseExpired($minute){
-        if (!$this->expired_at){
+    public function increaseExpired($minute)
+    {
+        if (! $this->expired_at) {
             $this->expired_at = new \DateTime;
         }
         $dv = new DateInterval('PT'.$minute.'M');
@@ -49,8 +50,11 @@ class UserToken extends Model
 
     public function isExpired()
     {
-        if (!$this->expired_at) return false;
+        if (! $this->expired_at) {
+            return false;
+        }
         $now = new \DateTime;
+
         return $now >= $this->expired_at;
     }
 }
