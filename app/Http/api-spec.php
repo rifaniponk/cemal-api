@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * @SWG\Definition(
  *   definition="NewUser",
  *   type="object",
@@ -16,7 +16,7 @@
  * )
  */
 
-/**
+/*
  * @SWG\Definition(
  *   definition="ResetPassword",
  *   type="object",
@@ -28,7 +28,7 @@
  * )
  */
 
-/**
+/*
  * @SWG\Definition(
  *   definition="RequestResetPassword",
  *   type="object",
