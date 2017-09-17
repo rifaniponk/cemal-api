@@ -27,7 +27,7 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-    	try {
+        try {
             $userToken = $this->authService->login($request->all());
 
             return $this->response($userToken, 200);
@@ -46,7 +46,7 @@ class LoginController extends Controller
      */
     public function logout()
     {
-    	try {
+        try {
             $this->authService->logout();
 
             return $this->response(null, 200);

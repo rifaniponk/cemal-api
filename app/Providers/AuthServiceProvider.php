@@ -3,8 +3,8 @@
 namespace Cemal\Providers;
 
 use Cemal\User;
-use Illuminate\Support\ServiceProvider;
 use Cemal\Models\UserToken;
+use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -32,19 +32,23 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->app['auth']->viaRequest('api', function ($request) {
             $token = $request->headers->get('Authorization');
-            if (!$token) return null;
+            if (! $token) {
+                return;
+            }
 
             $ut = UserToken::where('api_token', $token)->first();
-            if (!$ut) return null;
+            if (! $ut) {
+                return;
+            }
 
             $now = new \DateTime;
-            if (!$ut->expired_at || $ut->expired_at <= $now){
-                if ($ut->expired_at){
+            if (! $ut->expired_at || $ut->expired_at <= $now) {
+                if ($ut->expired_at) {
                     $ut->increaseExpired(60);
                 }
+
                 return $ut->user;
             }
-            return null;
         });
     }
 }

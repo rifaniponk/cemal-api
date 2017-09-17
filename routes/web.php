@@ -21,8 +21,8 @@ $router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], fun
 
         $app->post('login', 'LoginController@login');
         $app->post('logout', [
-        	'middleware'=>'auth',
-        	'uses'=>'LoginController@logout'
+            'middleware'=>'auth',
+            'uses'=>'LoginController@logout',
         ]);
     });
 });

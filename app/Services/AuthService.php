@@ -3,8 +3,8 @@
 namespace Cemal\Services;
 
 use Cemal\Models\User;
-use Cemal\Models\PasswordReset;
 use Cemal\Models\UserToken;
+use Cemal\Models\PasswordReset;
 use Cemal\Exceptions\FormException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -101,8 +101,8 @@ class AuthService
     }
 
     /**
-     * login
-     * @param  array  $data 
+     * login.
+     * @param  array  $data
      * @return UserToken
      */
     public function login(array $data)
@@ -122,8 +122,8 @@ class AuthService
             throw new NotFoundException('User');
         }
 
-        if (!Hash::check($data['password'], $user->password)){
-            throw new NotValidException("email atau password salah");
+        if (! Hash::check($data['password'], $user->password)) {
+            throw new NotValidException('email atau password salah');
         }
 
         $token = UserToken::create([
@@ -136,7 +136,7 @@ class AuthService
     }
 
     /**
-     * logout
+     * logout.
      */
     public function logout()
     {
@@ -145,23 +145,26 @@ class AuthService
     }
 
     /**
-     * get logged in user
+     * get logged in user.
      * @param  string $token
      * @return User
      */
     public function getLoggedInUser($token)
     {
-        if (!$token) return null;
+        if (! $token) {
+            return;
+        }
 
         $ut = UserToken::where('api_token', $token)->first();
-        if (!$ut) return null;
+        if (! $ut) {
+            return;
+        }
 
         $now = new \DateTime;
-        if (!$ut->expired_at){
+        if (! $ut->expired_at) {
             return $ut->user;
-        } else if ($ut->expired_at <= $now){
+        } elseif ($ut->expired_at <= $now) {
             return $ut->user;
         }
-        return null;
     }
 }
