@@ -15,12 +15,13 @@ class AuthService
 	/**
      * verify registration confirmation
      * @param  string $verification_code 
+	 * @return User
      */
 	public function verifyRegistration($verification_code)
 	{
 		$user = User::where('verification_code', $verification_code)->first();
 
-		if (!$user) throw new NotFoundException('Verification Code');
+		if (!$user) throw new NotFoundException('verification_code');
 
 		$user->verification_code = null;
 		$user->verified = true;
@@ -41,7 +42,6 @@ class AuthService
             'email' => 'required|email|max:255',
 		]);
 
-		$validator->validate($data);
         if ($validator->fails()){
             throw new FormException($validator);
         }
@@ -60,5 +60,41 @@ class AuthService
     	);
 
     	return $token;
+	}
+
+	/**
+	 * Reset password
+	 * @param  array  $data 
+	 * @return User
+	 */
+	public function resetPassword(array $data)
+	{
+		$validator = \Validator::make($data, [
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6|confirmed',
+            'token' => 'required',
+		]);
+
+        if ($validator->fails()){
+            throw new FormException($validator);
+        }
+
+        if (PasswordReset::where('email', $data['email'])
+        							->where('token', $data['token'])
+        							->count() === 0)
+        {
+			throw new NotFoundException('Token'); 
+        }
+
+        $user = User::where('email', $data['email'])->first();
+
+        if (!$user) throw new NotFoundException('User');
+
+        // clear all tokens
+        PasswordReset::where('email', $data['email'])->delete();
+
+        $user->forceFill([
+            'password' => Hash::make($data['password']),
+        ])->save();
 	}
 }

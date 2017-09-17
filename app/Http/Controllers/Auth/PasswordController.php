@@ -19,7 +19,12 @@ class PasswordController extends Controller
 
     public function reset(Request $request)
     {
-    	# code...
+    	try {
+            $this->authService->resetPassword($request->all());
+            return $this->response(null, 200, 'Password telah berhasil diubah');
+        } catch(\Exception $e) {
+            return $this->handleError($e);
+        }
     }
 
     public function requestReset(Request $request)
