@@ -11,16 +11,14 @@
 |
 */
 
-$router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], function($app)
-{
-	$app->group(['namespace' => 'Auth'], function($app)
-	{
-		$app->post('register', 'RegisterController@index');
-		$app->get('register/{verification_code}', 'RegisterController@verify');
+$router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], function ($app) {
+    $app->group(['namespace' => 'Auth'], function ($app) {
+        $app->post('register', 'RegisterController@index');
+        $app->get('register/{verification_code}', 'RegisterController@verify');
 
-		$app->post('password/reset', 'PasswordController@reset');
-		$app->post('password/email', 'PasswordController@requestReset');
-	});
+        $app->post('password/reset', 'PasswordController@reset');
+        $app->post('password/email', 'PasswordController@requestReset');
+    });
 });
 
 $router->get('/', function () use ($router) {

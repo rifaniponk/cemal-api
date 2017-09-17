@@ -2,10 +2,10 @@
 
 namespace Cemal\Mails\Auth;
 
+use Cemal\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Cemal\Models\User;
 
 class RegisterConfirmation extends Mailable
 {

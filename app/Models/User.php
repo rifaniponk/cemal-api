@@ -2,12 +2,12 @@
 
 namespace Cemal\Models;
 
+use Webpatser\Uuid\Uuid;
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Webpatser\Uuid\Uuid;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -30,10 +30,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'register_ip',
         'activation_date',
         'verified',
-        'verification_code'
+        'verification_code',
     ];
     protected $hidden = [
-        'password', 'remember_token', 'verification_code'
+        'password', 'remember_token', 'verification_code',
     ];
     protected $casts = [
         'id' => 'uuid',
@@ -55,7 +55,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         });
     }
 
-    public static function getValidationRules(array $group=array(), array $param=array())
+    public static function getValidationRules(array $group = [], array $param = [])
     {
         $rules = [
             'name' => 'required|max:255|min:4',
@@ -63,7 +63,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'password' => 'required|min:6|confirmed',
         ];
 
-        if (in_array('update', $group)){
+        if (in_array('update', $group)) {
             $rules['email'] .= ',email,'.$param['id'];
             $rules['password'] = 'min:6|confirmed';
         }
