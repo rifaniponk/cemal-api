@@ -16,6 +16,8 @@ class UserToken extends Model
     protected $fillable = [
         'user_id',
         'api_token',
+        'ip',
+        'browser',
         'expired_at',
     ];
 
