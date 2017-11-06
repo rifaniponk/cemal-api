@@ -132,7 +132,7 @@ class AuthService
             'api_token' => str_random(60),
             'expired_at' => null,
             'ip' => isset($aditionalData['ip']) ? $aditionalData['ip'] : null,
-            'browser' => isset($aditionalData['browser']) ? substr($aditionalData['browser'], 0, 50) : null,
+            'browser' => isset($aditionalData['browser']) ? $aditionalData['browser'] : null,
         ]);
 
         return $token;
@@ -140,11 +140,16 @@ class AuthService
 
     /**
      * logout.
+     * @param  array  $data
      */
-    public function logout()
+    public function logout(array $data = array())
     {
         $user = \Auth::user();
-        UserToken::where('user_id', $user->id)->delete();
+        $token = UserToken::where('user_id', $user->id);
+        foreach ($data as $key => $value) {
+            $token->where($key, $value);
+        }
+        $token->delete();
     }
 
     /**

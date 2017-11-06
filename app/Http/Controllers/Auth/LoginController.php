@@ -28,12 +28,8 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try {
-            $data = [
-                'ip' => $request->ip(),
-                'browser' => $request->userAgent(),
-            ];
 
-            $userToken = $this->authService->login($request->all(), $data);
+            $userToken = $this->authService->login($request->all(), $this->getAuthData($request));
 
             return $this->response($userToken, 200);
         } catch (\Exception $e) {
@@ -49,14 +45,23 @@ class LoginController extends Controller
      *     @SWG\Response(response="401", description="unauthenticated")
      * )
      */
-    public function logout()
+    public function logout(Request $request)
     {
         try {
-            $this->authService->logout();
+
+            $this->authService->logout($this->getAuthData($request));
 
             return $this->response(null, 200);
         } catch (\Exception $e) {
             return $this->handleError($e);
         }
+    }
+
+    private function getAuthData(Request $request)
+    {
+        return [
+                'ip' => $request->ip(),
+                'browser' => substr($request->userAgent(), 0, 50),
+            ];
     }
 }
