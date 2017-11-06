@@ -28,7 +28,12 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try {
-            $userToken = $this->authService->login($request->all());
+            $data = [
+                'ip' => $request->ip(),
+                'browser' => $request->userAgent(),
+            ];
+
+            $userToken = $this->authService->login($request->all(), $data);
 
             return $this->response($userToken, 200);
         } catch (\Exception $e) {

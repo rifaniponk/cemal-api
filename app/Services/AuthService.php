@@ -103,9 +103,10 @@ class AuthService
     /**
      * login.
      * @param  array  $data
+     * @param  array  $aditionalData
      * @return UserToken
      */
-    public function login(array $data)
+    public function login(array $data, array $aditionalData = array())
     {
         $validator = \Validator::make($data, [
             'email' => 'required|email',
@@ -130,6 +131,8 @@ class AuthService
             'user_id' => $user->id,
             'api_token' => str_random(60),
             'expired_at' => null,
+            'ip' => isset($aditionalData['ip']) ? $aditionalData['ip'] : null,
+            'browser' => isset($aditionalData['browser']) ? substr($aditionalData['browser'], 0, 50) : null,
         ]);
 
         return $token;
