@@ -28,7 +28,6 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         try {
-
             $userToken = $this->authService->login($request->all(), $this->getAuthData($request));
 
             return $this->response($userToken, 200);
@@ -48,7 +47,6 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         try {
-
             $this->authService->logout($this->getAuthData($request));
 
             return $this->response(null, 200);

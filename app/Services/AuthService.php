@@ -106,7 +106,7 @@ class AuthService
      * @param  array  $aditionalData
      * @return UserToken
      */
-    public function login(array $data, array $aditionalData = array())
+    public function login(array $data, array $aditionalData = [])
     {
         $validator = \Validator::make($data, [
             'email' => 'required|email',
@@ -142,7 +142,7 @@ class AuthService
      * logout.
      * @param  array  $data
      */
-    public function logout(array $data = array())
+    public function logout(array $data = [])
     {
         $user = \Auth::user();
         $token = UserToken::where('user_id', $user->id);
