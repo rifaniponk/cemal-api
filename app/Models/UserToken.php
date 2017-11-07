@@ -46,11 +46,11 @@ class UserToken extends Model
         if (! $this->expired_at) {
             $this->expired_at = new \DateTime;
         }
-        if (!$minute){
+        if (! $minute) {
             $minute = config('app.auth_expire_time');
         }
-        $this->expired_at =  \Carbon\Carbon::now()->addMinutes((int)$minute);
-        if ($save){
+        $this->expired_at = \Carbon\Carbon::now()->addMinutes((int) $minute);
+        if ($save) {
             $this->save();
         }
     }
