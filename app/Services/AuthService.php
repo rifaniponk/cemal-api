@@ -158,28 +158,4 @@ class AuthService
         }
         $token->delete();
     }
-
-    /**
-     * get logged in user.
-     * @param  string $token
-     * @return User
-     */
-    public function getLoggedInUser($token)
-    {
-        if (! $token) {
-            return;
-        }
-
-        $ut = UserToken::where('api_token', $token)->first();
-        if (! $ut) {
-            return;
-        }
-
-        $now = new \DateTime;
-        if (! $ut->expired_at) {
-            return $ut->user;
-        } elseif ($ut->expired_at <= $now) {
-            return $ut->user;
-        }
-    }
 }
