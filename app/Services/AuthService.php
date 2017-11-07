@@ -104,7 +104,7 @@ class AuthService
      * login.
      * @param  array  $data
      * @param  array  $aditionalData
-     * @param  boolean $expire     token should be expired or not
+     * @param  bool $expire     token should be expired or not
      * @return UserToken
      */
     public function login(array $data, array $aditionalData = [], $expire = true)
