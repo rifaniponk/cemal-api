@@ -45,6 +45,19 @@
                 }
             }
         },
+        "/whoami": {
+            "get": {
+                "summary": "get current logged in user",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "401": {
+                        "description": "unauthenticated"
+                    }
+                }
+            }
+        },
         "/password/reset": {
             "post": {
                 "summary": "Reset password",

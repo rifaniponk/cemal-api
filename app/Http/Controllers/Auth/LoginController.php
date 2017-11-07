@@ -55,6 +55,14 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * @SWG\Get(
+     *     path="/whoami",
+     *     summary="get current logged in user",
+     *     @SWG\Response(response="200", description="ok"),
+     *     @SWG\Response(response="401", description="unauthenticated")
+     * )
+     */
     public function whoami(Request $request)
     {
         try {
