@@ -55,6 +55,15 @@ class LoginController extends Controller
         }
     }
 
+    public function whoami(Request $request)
+    {
+        try {
+            return $this->response(\Auth::user(), 200);
+        } catch (\Exception $e) {
+            return $this->handleError($e);
+        }
+    }
+
     private function getAuthData(Request $request)
     {
         return [

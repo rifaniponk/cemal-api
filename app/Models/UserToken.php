@@ -41,13 +41,18 @@ class UserToken extends Model
         return $this->belongsTo('Cemal\Models\User');
     }
 
-    public function increaseExpired($minute)
+    public function increaseExpired($minute = null, $save = true)
     {
         if (! $this->expired_at) {
             $this->expired_at = new \DateTime;
         }
-        $dv = new DateInterval('PT'.$minute.'M');
-        $this->expired_at->add($dv);
+        if (!$minute){
+            $minute = config('app.auth_expire_time');
+        }
+        $this->expired_at =  \Carbon\Carbon::now()->addMinutes((int)$minute);
+        if ($save){
+            $this->save();
+        }
     }
 
     public function isExpired()

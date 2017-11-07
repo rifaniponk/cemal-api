@@ -42,9 +42,9 @@ class AuthServiceProvider extends ServiceProvider
             }
 
             $now = new \DateTime;
-            if (! $ut->expired_at || $ut->expired_at <= $now) {
+            if (! $ut->expired_at || $ut->expired_at >= $now) {
                 if ($ut->expired_at) {
-                    $ut->increaseExpired(60);
+                    $ut->increaseExpired();
                 }
 
                 return $ut->user;

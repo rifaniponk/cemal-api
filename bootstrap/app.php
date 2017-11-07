@@ -90,6 +90,7 @@ $app->register(\SwaggerLume\ServiceProvider::class);
 |--------------------------------------------------------------------------
 |
 */
+$app->configure('app');
 $app->configure('mail');
 $app->configure('swagger-lume');
 
