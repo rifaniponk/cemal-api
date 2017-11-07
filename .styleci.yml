@@ -2,4 +2,4 @@ preset: laravel
 
 finder:
   exclude:
-    - "*-spec.php"
+    - "Specs"
