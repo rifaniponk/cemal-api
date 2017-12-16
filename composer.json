@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Cemal\\": "app/"
+            "Cemal\\": ["app/", "tests/"]
         }
     },
     "autoload-dev": {
