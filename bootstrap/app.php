@@ -114,4 +114,12 @@ $app->router->group([
 $app->make('queue');
 $app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);
 
+/*
+|--------------------------------------------------------------------------
+| Another config
+|--------------------------------------------------------------------------
+|
+*/ 
+app('translator')->setLocale(config('app.locale'));
+
 return $app;
