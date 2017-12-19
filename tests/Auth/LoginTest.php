@@ -1,4 +1,5 @@
 <?php
+
 use Cemal\Tests\TestCase;
 
 class LoginTest extends TestCase
