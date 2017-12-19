@@ -2,11 +2,22 @@ language: php
 php:
   - '7.1'
 
+services:
+  - postgresql
+
 install:
   - composer install
 
+before_script:
+  - psql -c 'create database cemal;' -U postgres
+  - cp .env.test .env
+
 script:
+  - php artisan migrate:refresh --seed
   - phpunit
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+after_failure:
+  - cat storage/logs/lumen.log

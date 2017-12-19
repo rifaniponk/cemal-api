@@ -6,8 +6,9 @@ use Cemal\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RegisterConfirmation extends Mailable
+class RegisterConfirmation extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

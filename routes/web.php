@@ -20,7 +20,7 @@ $router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], fun
         $app->post('password/email', 'PasswordController@requestReset');
 
         $app->post('login', 'LoginController@login');
-        $app->post('whoami', [
+        $app->get('whoami', [
             'middleware'=>'auth',
             'uses'=>'LoginController@whoami',
         ]);
