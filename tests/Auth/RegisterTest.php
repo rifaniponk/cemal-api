@@ -2,7 +2,6 @@
 
 use Cemal\Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\DB;
 
 class RegisterTest extends TestCase
 {
