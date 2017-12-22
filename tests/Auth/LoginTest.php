@@ -4,11 +4,11 @@ use Cemal\Tests\TestCase;
 
 class LoginTest extends TestCase
 {
-	public function testLogin()
+    public function testLogin()
     {
         $this->json('POST', '/v1/login', [
-        	'email'=> 'cemal.tester2@rifanmfauzi.com',
-        	'password'=> '123cemal'
+            'email'=> 'cemal.tester2@rifanmfauzi.com',
+            'password'=> '123cemal',
         ]);
 
         $response = $this->getJsonResponse();
@@ -21,8 +21,8 @@ class LoginTest extends TestCase
     public function testLoginBadInput()
     {
         $this->json('POST', '/v1/login', [
-        	'email'=> 'cemal.tester2@rifanmfauzi.com',
-        	'password'=> 'adadasdasdasd'
+            'email'=> 'cemal.tester2@rifanmfauzi.com',
+            'password'=> 'adadasdasdasd',
         ]);
 
         $response = $this->getJsonResponse();
@@ -87,7 +87,7 @@ class LoginTest extends TestCase
 
         // make sure token has been deleted after logout
         $userTokenCount = DB::table('user_tokens')->where('api_token', $userToken->api_token)->count();
-        
+
         $this->assertEquals(
             0, $userTokenCount
         );

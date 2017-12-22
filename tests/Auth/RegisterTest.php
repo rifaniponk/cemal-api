@@ -8,7 +8,7 @@ class RegisterTest extends TestCase
     public function testIndex()
     {
         $email = 'tester'.str_random(7).'@gmail.com';
-        
+
         $data = [
             'email' => $email,
             'password' => '123cemal',
@@ -50,15 +50,15 @@ class RegisterTest extends TestCase
         );
 
         $this->assertEquals(
-            true, property_exists($response->data, 'name') 
+            true, property_exists($response->data, 'name')
         );
 
         $this->assertEquals(
-            true, property_exists($response->data, 'email') 
+            true, property_exists($response->data, 'email')
         );
 
         $this->assertEquals(
-            true, property_exists($response->data, 'password') 
+            true, property_exists($response->data, 'password')
         );
     }
 
