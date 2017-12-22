@@ -1,6 +1,7 @@
 <?php
 
 use Cemal\Tests\TestCase;
+use Illuminate\Support\Facades\Mail;
 
 class PasswordTest extends TestCase
 {
@@ -8,6 +9,8 @@ class PasswordTest extends TestCase
 
     public function testRequestReset()
     {
+        Mail::fake();
+
         $this->json('POST', '/v1/password/email', [
             'email'=> self::USER_EMAIL,
         ]);
