@@ -78,7 +78,7 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(Cemal\Providers\AppServiceProvider::class);
+$app->register(Cemal\Providers\AppServiceProvider::class);
 // $app->register(Cemal\Providers\EventServiceProvider::class);
 $app->register(Cemal\Providers\AuthServiceProvider::class);
 $app->register(\Illuminate\Mail\MailServiceProvider::class);
