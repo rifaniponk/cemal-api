@@ -63,7 +63,7 @@ class Controller extends BaseController
         } elseif (get_class($e) === NotValidException::class) {
             return $this->response(null, 400, $e->getMessage());
         } else {
-            \Log::critical($e->getMessage());
+            \Log::critical(get_class($e).': '.$e->getMessage());
 
             return $this->response(null, 500);
         }
