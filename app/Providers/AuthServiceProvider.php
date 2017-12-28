@@ -4,6 +4,7 @@ namespace Cemal\Providers;
 
 use Cemal\User;
 use Cemal\Models\UserToken;
+use Cemal\Services\JWTService;
 use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -36,7 +37,12 @@ class AuthServiceProvider extends ServiceProvider
                 return;
             }
 
-            $ut = UserToken::where('api_token', $token)->first();
+            $token = trim(str_replace('Bearer ', '', $token));
+
+            $jwtService = app(JWTService::class);
+            $apiToken = $jwtService->getClaim($token, 'api_token');
+
+            $ut = UserToken::where('api_token', $apiToken)->first();
             if (! $ut) {
                 return;
             }
