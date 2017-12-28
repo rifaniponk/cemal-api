@@ -3,17 +3,21 @@
 namespace Cemal\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use Cemal\Services\JWTService;
 use Cemal\Services\AuthService;
 use Cemal\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
     private $authService;
+    private $jwtService;
 
     public function __construct(
-        AuthService $authService
+        AuthService $authService,
+        JWTService $jwtService
     ) {
         $this->authService = $authService;
+        $this->jwtService = $jwtService;
     }
 
     /**
@@ -30,7 +34,10 @@ class LoginController extends Controller
         try {
             $userToken = $this->authService->login($request->all(), $this->getAuthData($request));
 
-            return $this->response($userToken, 200);
+            // encrypt api token into jwt
+            $token = $this->jwtService->getToken(['api_token' => $userToken->api_token]);
+
+            return $this->response(['token' => 'Bearer '.$token], 200);
         } catch (\Exception $e) {
             return $this->handleError($e);
         }

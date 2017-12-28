@@ -104,13 +104,16 @@ class AuthService
      * login.
      * @param  array  $data
      * @param  array  $aditionalData
-     * @param  bool $expire     token should be expired or not
      * @return UserToken
      */
-    public function login(array $data, array $aditionalData = [], $expire = true)
+    public function login(array $data, array $aditionalData = [])
     {
-        $expiredTime = new \DateTime;
-        $expiredTime = $expiredTime->add(new \DateInterval('PT'.config('app.auth_expire_time').'M'));
+        $expireTime = (int) config('app.auth_expire_time');
+        $expiredTime = null;
+        if ($expireTime) {
+            $expiredTime = new \DateTime;
+            $expiredTime = $expiredTime->add(new \DateInterval('PT'.config('app.auth_expire_time').'M'));
+        }
 
         $validator = \Validator::make($data, [
             'email' => 'required|email',
@@ -141,7 +144,7 @@ class AuthService
         $token = UserToken::create([
             'user_id' => $user->id,
             'api_token' => str_random(60),
-            'expired_at' => $expire ? $expiredTime : null,
+            'expired_at' => $expiredTime,
             'ip' => isset($aditionalData['ip']) ? $aditionalData['ip'] : null,
             'browser' => isset($aditionalData['browser']) ? $aditionalData['browser'] : null,
         ]);
