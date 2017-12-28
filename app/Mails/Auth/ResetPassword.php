@@ -13,11 +13,6 @@ class ResetPassword extends Mailable implements ShouldQueue
 
     public $token;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public function __construct($token)
     {
         $this->token = $token;

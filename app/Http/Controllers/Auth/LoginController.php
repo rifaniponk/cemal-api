@@ -70,7 +70,7 @@ class LoginController extends Controller
      *     @SWG\Response(response="401", description="unauthenticated")
      * )
      */
-    public function whoami(Request $request)
+    public function whoami()
     {
         try {
             return $this->response(\Auth::user(), 200);

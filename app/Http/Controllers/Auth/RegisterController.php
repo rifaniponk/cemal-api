@@ -12,11 +12,6 @@ class RegisterController extends Controller
     private $userService;
     private $authService;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(
         UserService $userService,
         AuthService $authService

@@ -14,11 +14,6 @@ class RegisterConfirmation extends Mailable implements ShouldQueue
 
     public $user;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
     public function __construct(User $user)
     {
         $this->user = $user;
