@@ -108,9 +108,9 @@ class AuthService
      */
     public function login(array $data, array $aditionalData = [])
     {
-        $expireTime  = (int)config('app.auth_expire_time');
+        $expireTime = (int) config('app.auth_expire_time');
         $expiredTime = null;
-        if ($expireTime){
+        if ($expireTime) {
             $expiredTime = new \DateTime;
             $expiredTime = $expiredTime->add(new \DateInterval('PT'.config('app.auth_expire_time').'M'));
         }

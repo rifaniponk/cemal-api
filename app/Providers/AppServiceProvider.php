@@ -13,8 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton( \Cemal\Services\JWTService::class, function(){
-		    return new \Cemal\Services\JWTService();
-		});
+        $this->app->singleton(\Cemal\Services\JWTService::class, function () {
+            return new \Cemal\Services\JWTService();
+        });
     }
 }

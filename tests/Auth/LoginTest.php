@@ -109,18 +109,18 @@ class LoginTest extends TestCase
     }
 
     /**
-     * get available token from DB
+     * get available token from DB.
      * @return array(api_token, jwt_token, user_id)
      */
     private function getToken()
     {
         $userToken = DB::table('user_tokens')->where('expired_at', '>', new \DateTime)->first();
         $jwtService = app(JWTService::class);
-        
+
         return [
             $userToken->api_token,
-            'Bearer '.$jwtService->getToken([ 'api_token' => $userToken->api_token ]),
-            $userToken->user_id
+            'Bearer '.$jwtService->getToken(['api_token' => $userToken->api_token]),
+            $userToken->user_id,
         ];
     }
 }
