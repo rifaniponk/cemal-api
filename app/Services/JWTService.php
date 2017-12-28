@@ -23,15 +23,16 @@ class JWTService
     public function getBuilder()
     {
         $builder = new Builder();
-        $builder->setIssuer(url('/'))
-                ->setAudience(url('/'))
-                ->setIssuedAt(time());
+        $builder->issuedBy(url('/'))
+                ->issuedAt(time());
 
-        // TODO: should we validate expiration time via jwt playload?
-        // $expireTime  = (int)config('app.auth_expire_time');
-        // if ($expireTime){
-        // 	$builder->setExpiration(time() + (60 * $expireTime));
-        // }
+        /*
+    	 *  TODO: should we validate expiration time via jwt playload?
+        $expireTime  = (int)config('app.auth_expire_time');
+    	if ($expireTime){
+    		$builder->setExpiration(time() + (60 * $expireTime));
+    	}
+        **/
 
         return $builder;
     }
@@ -45,7 +46,7 @@ class JWTService
     {
         $builder = $this->getBuilder();
         foreach ($claims as $claim => $value) {
-            $builder->set($claim, $value);
+            $builder->with($claim, $value);
         }
         $builder->sign($this->signer, config('app.key'));
 
@@ -55,7 +56,7 @@ class JWTService
     /**
      * Parse string token.
      * @param  string $token
-     * @return Lcobucci\JWT\Token
+     * @return \Lcobucci\JWT\Token
      */
     public function parseToken($token)
     {
