@@ -8,10 +8,11 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Cemal\Supports\RolesAndRights;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable;
+    use Authenticatable, Authorizable, RolesAndRights;
 
     protected $table = 'users';
     public $timestamps = true;
@@ -46,6 +47,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'last_login_date',
         'activation_date',
     ];
+    protected $appends = ['rights'];
+
+    public function getRightsAttribute($value){
+        return $this->getRoleRights($this->role);
+    }  
 
     public static function boot()
     {
