@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'verification_code',
     ];
     protected $hidden = [
-        'password', 'remember_token', 'verification_code',
+        'password', 'remember_token', 'verification_code', 'status', 'deleted_at'
     ];
     protected $casts = [
         'id' => 'uuid',
