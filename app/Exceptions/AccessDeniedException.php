@@ -1,4 +1,5 @@
 <?php
+
 namespace Cemal\Exceptions;
 
 use Exception;

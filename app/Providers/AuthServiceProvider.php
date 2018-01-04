@@ -4,9 +4,9 @@ namespace Cemal\Providers;
 
 use Cemal\Models\User;
 use Cemal\Models\UserToken;
+use Cemal\Policies\UserPolicy;
 use Cemal\Services\JWTService;
 use Illuminate\Support\ServiceProvider;
-use Cemal\Policies\UserPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {

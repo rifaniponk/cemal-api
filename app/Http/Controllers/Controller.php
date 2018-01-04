@@ -75,17 +75,18 @@ class Controller extends BaseController
     }
 
     /**
-     * validate user's privilege
-     * @param  string $right  
-     * @param  string | object $object 
+     * validate user's privilege.
+     * @param  string $right
+     * @param  string | object $object
      * @return true if user is granted
      */
     protected function validatePrivilege($right, $object)
     {
         $granted = \Gate::allows('view', \Auth::user());
-        if (!$granted){
+        if (! $granted) {
             throw new AccessDeniedException();
         }
+
         return true;
     }
 }
