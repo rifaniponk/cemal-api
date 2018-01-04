@@ -3,6 +3,7 @@
 namespace Cemal\Models;
 
 use Webpatser\Uuid\Uuid;
+use Cemal\Supports\RolesAndRights;
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable;
+    use Authenticatable, Authorizable, RolesAndRights;
 
     protected $table = 'users';
     public $timestamps = true;
@@ -33,7 +34,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'verification_code',
     ];
     protected $hidden = [
-        'password', 'remember_token', 'verification_code',
+        'password', 'remember_token', 'verification_code', 'status', 'deleted_at',
     ];
     protected $casts = [
         'id' => 'uuid',
@@ -46,6 +47,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'last_login_date',
         'activation_date',
     ];
+    protected $appends = ['rights'];
+
+    public function getRightsAttribute($value)
+    {
+        return $this->getRoleRights($this->role);
+    }
 
     public static function boot()
     {

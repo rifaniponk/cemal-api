@@ -134,6 +134,9 @@ class AuthService
             throw new NotValidException('email atau password salah');
         }
 
+        $user->last_login_date = new \DateTime;
+        $user->save();
+
         // remove same user token
         $token = UserToken::where('user_id', $user->id);
         foreach ($aditionalData as $key => $value) {

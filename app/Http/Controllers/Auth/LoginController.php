@@ -73,6 +73,8 @@ class LoginController extends Controller
     public function whoami()
     {
         try {
+            $this->validatePrivilege('view', \Auth::user());
+
             return $this->response(\Auth::user(), 200);
         } catch (\Exception $e) {
             return $this->handleError($e);
