@@ -5,6 +5,7 @@ namespace Cemal\Http\Controllers;
 use Cemal\Exceptions\FormException;
 use Cemal\Exceptions\NotFoundException;
 use Cemal\Exceptions\NotValidException;
+use Cemal\Exceptions\AccessDeniedException;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 /**
@@ -35,6 +36,8 @@ class Controller extends BaseController
                 $message = 'Bad input';
             } elseif ($status === 401) {
                 $message = 'Unauthorized';
+            } elseif ($status === 403) {
+                $message = 'Forbidden';
             } elseif ($status === 404) {
                 $message = 'Not found';
             } elseif ($status === 500) {
@@ -62,10 +65,27 @@ class Controller extends BaseController
             return $this->response(null, 404, $e->getMessage());
         } elseif (get_class($e) === NotValidException::class) {
             return $this->response(null, 400, $e->getMessage());
+        } elseif (get_class($e) === AccessDeniedException::class) {
+            return $this->response(null, 403, $e->getMessage());
         } else {
             \Log::critical(get_class($e).': '.$e->getMessage());
 
             return $this->response(null, 500);
         }
+    }
+
+    /**
+     * validate user's privilege
+     * @param  string $right  
+     * @param  string | object $object 
+     * @return true if user is granted
+     */
+    protected function validatePrivilege($right, $object)
+    {
+        $granted = \Gate::allows('view', \Auth::user());
+        if (!$granted){
+            throw new AccessDeniedException();
+        }
+        return true;
     }
 }

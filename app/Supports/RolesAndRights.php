@@ -1,7 +1,7 @@
 <?php
 namespace Cemal\Supports;
 
-use Lontar\Models\User;
+use Cemal\Models\User;
 
 trait RolesAndRights
 {
