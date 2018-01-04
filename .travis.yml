@@ -1,23 +1,24 @@
 language: php
 php:
-  - '7.1'
-
+- '7.1'
 services:
-  - postgresql
-
+- postgresql
 install:
-  - composer install
-
+- composer install
 before_script:
-  - psql -c 'create database cemal;' -U postgres
-  - cp .env.test .env
-
+- psql -c 'create database cemal;' -U postgres
+- cp .env.test .env
 script:
-  - php artisan migrate:refresh --seed
-  - phpunit
-
+- php artisan migrate:refresh --seed
+- phpunit
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
+- bash <(curl -s https://codecov.io/bash)
 after_failure:
-  - cat storage/logs/lumen.log
+- cat storage/logs/lumen.log
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: yJ01iJAbg9bAzfv1obbeRzRyx/R8/b0mNiSAj7jpShdrsziQty+LSDJf6JXDr12jR3SfSwq4BkhlJCls/5IVdiFZRQlMYonDWONt+sIM9lIOEBRQmCKGYI7HKGYreWUHlhlK4WUGPmYYEmQWhvSe1XhIQDRUDtqKf8RBcfTdtBsfYiUT+OUjZLtl5c6Vna/3eM4JTR0CKA4lYDTR9XGaEhKV1U+ASDTV5y7Cg0Y5SpXvAWPsYpbVhPrA+f4RF53jvu8n8F0MyA41Z0jV3hLEuvWr/qoxcikvPgTcsEtqNplEALD0gU8zpYB6Uk1Cpzry7/wQqiPKiqunkzaa/rorVgGlmQBdVtgRhYtEhiegThTEAMi/dWBU6pNeqIfmqDsWDzCOUsY6C5xLsJu9v8FR0aQXDZUK+ME9RAE2d1yb2jnv4ijmt2xwCkM4V2gY5vd77lK+1JoqgEHGarIAdNvkmSzffL26i1F5aNeaiJ0WDoEDLSDFtzj10UnoxzNHjVTFPboqAIbeSdinixlGTFbCCydKt8CL5gqHrL4EG3HcmwlWQr/PloWbV5/z6WZwsqEULum0eEkDofZgu1cUj3iDhH3Kqe86/nBLO9D6rl7P9mOk7+u2LUc3FBy9dgy31sFW0SymtMvvOneN6UWAyVnbLWE33TTllfiDw8uwtd+7IZY=
+    on_success: always
+    on_failure: always
