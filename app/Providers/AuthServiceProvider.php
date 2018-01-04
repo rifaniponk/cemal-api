@@ -2,8 +2,9 @@
 
 namespace Cemal\Providers;
 
-use Cemal\User;
+use Cemal\Models\User;
 use Cemal\Models\UserToken;
+use Cemal\Policies\UserPolicy;
 use Cemal\Services\JWTService;
 use Illuminate\Support\ServiceProvider;
 
@@ -56,5 +57,12 @@ class AuthServiceProvider extends ServiceProvider
                 return $ut->user;
             }
         });
+
+        $this->registerPolicies();
+    }
+
+    private function registerPolicies()
+    {
+        \Gate::policy(User::class, UserPolicy::class);
     }
 }
