@@ -83,6 +83,7 @@ $app->register(Cemal\Providers\AppServiceProvider::class);
 $app->register(Cemal\Providers\AuthServiceProvider::class);
 $app->register(\Illuminate\Mail\MailServiceProvider::class);
 $app->register(\SwaggerLume\ServiceProvider::class);
+$app->register(\Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

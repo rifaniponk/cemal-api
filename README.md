@@ -88,6 +88,13 @@ cd ~/vagrant/code/cemal-api
 phpunit
 ```
 
+## Generate Model
+
+once you have created new table in db,
+you need to execute this script to generate model
+
+`php artisan krlove:generate:model --config=config/eloquent-model-generator.php <className> --table-name=<table_name>`
+
 ## API Documentation
 
 api documentation is here http://cemal.api/api/documentation

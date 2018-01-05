@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "81cf7b08172f01f42e4e278d5551750f",
+    "content-hash": "0783f14c9d2ba1f28b7b346e051a2b05",
     "packages": [
         {
             "name": "darkaonline/swagger-lume",
@@ -3293,6 +3293,37 @@
     ],
     "packages-dev": [
         {
+            "name": "asamaru7/eloquent-model-generator-for-lumen",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asamaru7/eloquent-model-generator.git",
+                "reference": "8ed932fa921090d093eb1574280d7b860d2a5282"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asamaru7/eloquent-model-generator/zipball/8ed932fa921090d093eb1574280d7b860d2a5282",
+                "reference": "8ed932fa921090d093eb1574280d7b860d2a5282",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.5",
+                "krlove/code-generator": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Krlove\\EloquentModelGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Eloquent Model Generator",
+            "time": "2016-09-20T11:26:23+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.1.0",
             "source": {
@@ -3440,6 +3471,33 @@
                 "test"
             ],
             "time": "2015-05-11T14:41:42+00:00"
+        },
+        {
+            "name": "krlove/code-generator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/krlove/code-generator.git",
+                "reference": "c1f0cb6898c5e378528c095d54623171e62ee1c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/krlove/code-generator/zipball/c1f0cb6898c5e378528c095d54623171e62ee1c3",
+                "reference": "c1f0cb6898c5e378528c095d54623171e62ee1c3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Krlove\\CodeGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Code Generator",
+            "time": "2016-04-03T14:09:31+00:00"
         },
         {
             "name": "mockery/mockery",
