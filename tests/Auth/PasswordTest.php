@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Mail;
 
 class PasswordTest extends TestCase
 {
-    const USER_EMAIL = 'cemal.tester1@rifanmfauzi.com';
+    const USER_EMAIL = 'dontuse1@rifanmfauzi.com';
 
     public function testRequestReset()
     {
