@@ -1,0 +1,315 @@
+{
+	"info": {
+		"name": "Cemal",
+		"_postman_id": "97b1705f-f478-c203-307e-5ab716f23544",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"description": "",
+			"item": [
+				{
+					"name": "request password reset",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"rifan.refun@gmail.com\",\n  \"password\":\"qweqwe\",\n  \"password_confirmation\":\"qweqwe\",\n  \"name\":\"Rifan M F\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/register/7406e26e1cfc58770a7e",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"register",
+								"7406e26e1cfc58770a7e"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"cemal.tester1@rifanmfauzi.com\",\n  \"password\":\"123cemal\",\n  \"password_confirmation\":\"123cemal\",\n  \"name\":\"Cemal Tester 1\",\n  \"phone\": \"093839434\",\n  \"address\": \"Jalan Anomali no 90\",\n  \"avatar\": \"https://openclipart.org/image/2400px/svg_to_png/177482/ProfilePlaceholderSuit.png\",\n  \"biography\": \"Iam Cemal Tester\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"register"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "register confirmation",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"cemal.tester1@rifanmfauzi.com\",\n  \"password\":\"123cemal\",\n  \"password_confirmation\":\"123cemal\",\n  \"name\":\"Cemal Tester 1\",\n  \"phone\": \"093839434\",\n  \"address\": \"Jalan Anomali no 90\",\n  \"avatar\": \"https://openclipart.org/image/2400px/svg_to_png/177482/ProfilePlaceholderSuit.png\",\n  \"biography\": \"Iam Cemal Tester\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/register/3b713693cd448051311e",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"register",
+								"3b713693cd448051311e"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\":\"rifan.refun@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/password/email",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"password",
+								"email"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"rifan.refun@gmail.com\",\r\n  \"password\": \"new_password\",\r\n  \"password_confirmation\": \"new_password\",\r\n  \"token\": \"rSQt8eGH0LwU27qvqJQq02fTfbI83MN4YKBGHEOchjnYDQrAkyWbHDX0c9Bc\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/password/reset",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"password",
+								"reset"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"cemal.tester2@rifanmfauzi.com\",\r\n  \"password\": \"123cemal\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9jZW1hbC5hcGkiLCJhdWQiOiJodHRwOlwvXC9jZW1hbC5hcGkiLCJpYXQiOjE1MTQ0NTYyNzgsImFwaV90b2tlbiI6Inc2VTFUV082UEJsYmpaYm9GbWQ4QXhEQnZVSW1IaDBHVGk5YTRkZDdQa1p1dm1nWlRFcDhaNjFBUHA4aSJ9.GKhIzbelcJmS82umQ9M0xGkHhBnr7wQjklGYI0gcHD8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"logout"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "whoami",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9jZW1hbC5hcGkiLCJpYXQiOjE1MTQ3MzMzMjYsImFwaV90b2tlbiI6IjByOTBoWVBCSnNBMFdhaXZrdjAyWm1ocGRqMzlaV0J2aEdVbXAxYUhlR3NycVJGZ0wxa1dmejl5UnVIaiJ9.9cYWmxoy_5Sh3bCQJEw8CAoQ7FPYUGwI1z0L4TphreQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/whoami",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"whoami"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "deed",
+			"description": "",
+			"item": [
+				{
+					"name": "create deeds",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\" : \"Puasa senin kamis\",\n\t\"description\" : \"Puasa setiap hari senin & kamis\",\n\t\"public\" : true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/deeds",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"deeds"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "91b2834b-b7fe-4250-8437-685aefc8916b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9aeccad-7523-46d3-934f-2af9801c1b19",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

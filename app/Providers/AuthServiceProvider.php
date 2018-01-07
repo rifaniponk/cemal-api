@@ -3,8 +3,10 @@
 namespace Cemal\Providers;
 
 use Cemal\Models\User;
+use Cemal\Models\Deed;
 use Cemal\Models\UserToken;
 use Cemal\Policies\UserPolicy;
+use Cemal\Policies\DeedPolicy;
 use Cemal\Services\JWTService;
 use Illuminate\Support\ServiceProvider;
 
@@ -64,5 +66,6 @@ class AuthServiceProvider extends ServiceProvider
     private function registerPolicies()
     {
         \Gate::policy(User::class, UserPolicy::class);
+        \Gate::policy(Deed::class, DeedPolicy::class);
     }
 }

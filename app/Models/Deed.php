@@ -3,6 +3,7 @@
 namespace Cemal\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Webpatser\Uuid\Uuid;
 
 /**
  * @property mixed $id
@@ -37,5 +38,14 @@ class Deed extends Model
         self::creating(function ($model) {
             $model->id = (string) Uuid::generate(4);
         });
+    }
+
+    public static function getValidationRules(array $group = [], array $param = [])
+    {
+        $rules = [
+            'title' => 'required|max:255|min:6',
+        ];
+
+        return $rules;
     }
 }

@@ -20,11 +20,13 @@ trait RolesAndRights
             // super admin
             $rights = [
                 'user-*',
+                'deed-*',
             ];
         } elseif ((int) $role === 2) {
             // user
             $rights = [
                 'user-self-*',
+                'deed-self*',
             ];
         }
 

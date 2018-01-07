@@ -29,6 +29,12 @@ $router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], fun
             'uses'=>'LoginController@logout',
         ]);
     });
+    $app->group(['namespace' => 'Deed', 'prefix' => 'deeds'], function ($app) {
+        $app->post('/', [
+            'middleware'=>'auth',
+            'uses'=>'DeedController@create',
+        ]);
+    });
 });
 
 $router->get('/', function () use ($router) {

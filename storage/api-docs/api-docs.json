@@ -146,6 +146,29 @@
                     }
                 }
             }
+        },
+        "/deeds": {
+            "post": {
+                "summary": "create deed",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Deed"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "bad input"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -244,6 +267,26 @@
                 "password": {
                     "format": "string",
                     "example": "123456789"
+                }
+            },
+            "type": "object"
+        },
+        "Deed": {
+            "required": [
+                "title"
+            ],
+            "properties": {
+                "title": {
+                    "format": "string",
+                    "example": "Puasa senin kamis"
+                },
+                "description": {
+                    "format": "string",
+                    "example": "Puasa setiap hari senin dan kamis"
+                },
+                "public": {
+                    "format": "bool",
+                    "example": "true"
                 }
             },
             "type": "object"
