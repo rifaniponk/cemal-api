@@ -77,13 +77,16 @@ $app->routeMiddleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-
-$app->register(Cemal\Providers\AppServiceProvider::class);
-// $app->register(Cemal\Providers\EventServiceProvider::class);
-$app->register(Cemal\Providers\AuthServiceProvider::class);
+// third party
 $app->register(\Illuminate\Mail\MailServiceProvider::class);
 $app->register(\SwaggerLume\ServiceProvider::class);
 $app->register(\Krlove\EloquentModelGenerator\Provider\GeneratorServiceProvider::class);
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+// cemal
+$app->register(Cemal\Providers\AppServiceProvider::class);
+// $app->register(Cemal\Providers\EventServiceProvider::class);
+$app->register(Cemal\Providers\AuthServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
