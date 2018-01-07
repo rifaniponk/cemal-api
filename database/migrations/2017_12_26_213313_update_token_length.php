@@ -25,7 +25,7 @@ class UpdateTokenLength extends Migration
     public function down()
     {
         Schema::table('user_tokens', function ($table) {
-            $table->string('api_token', 60)->unique()->change();
+            $table->string('api_token', 60)->change();
         });
     }
 }
