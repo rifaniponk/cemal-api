@@ -2,7 +2,7 @@
 
 namespace Cemal\Models;
 
-use Webpatser\Uuid\Uuid;
+use Cemal\Models\GenerateUuid;
 use Cemal\Supports\RolesAndRights;
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
@@ -12,7 +12,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
-    use Authenticatable, Authorizable, RolesAndRights;
+    use Authenticatable, Authorizable, RolesAndRights, GenerateUuid;
 
     protected $table = 'users';
     public $timestamps = true;
@@ -52,14 +52,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getRightsAttribute($value)
     {
         return $this->getRoleRights($this->role);
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->id = (string) Uuid::generate(4);
-        });
     }
 
     public static function getValidationRules(array $group = [], array $param = [])

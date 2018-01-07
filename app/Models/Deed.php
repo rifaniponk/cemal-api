@@ -3,7 +3,7 @@
 namespace Cemal\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
+use Cemal\Models\GenerateUuid;
 
 /**
  * @property mixed $id
@@ -17,6 +17,8 @@ use Webpatser\Uuid\Uuid;
  */
 class Deed extends Model
 {
+    use GenerateUuid;
+
     public $incrementing = false;
 
     protected $fillable = ['user_id', 'title', 'description', 'public'];
@@ -30,14 +32,6 @@ class Deed extends Model
     public function users()
     {
         return $this->belongsTo('Users', 'user_id');
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->id = (string) Uuid::generate(4);
-        });
     }
 
     public static function getValidationRules(array $group = [], array $param = [])
