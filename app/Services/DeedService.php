@@ -23,8 +23,8 @@ class DeedService
             \DB::beginTransaction();
 
             $data['user_id'] = \Auth::user()->id;
-            if (\Gate::allows('create', Deed::class)){
-            	$data['public'] = $data['public']; 
+            if ($data['public'] && \Gate::allows('create-public', Deed::class)){
+            	$data['public'] = true; 
             } else {
             	$data['public'] = false;
             }

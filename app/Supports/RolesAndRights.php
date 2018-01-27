@@ -26,7 +26,7 @@ trait RolesAndRights
             // user
             $rights = [
                 'user-self-*',
-                'deed-self*',
+                'deed-self-*',
             ];
         }
 
@@ -50,7 +50,7 @@ trait RolesAndRights
         } elseif ($rightPart[1] === 'self' && in_array($rightPart[0].'-self-*', $rights)) {
             return true;
         }
-
+        
         return false;
     }
 }

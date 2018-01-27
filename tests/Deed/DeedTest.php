@@ -28,7 +28,7 @@ class DeedTest extends TestCase
         );
     }
 
-    public function testCreate2()
+    public function testCreatePublic()
     {
         $data = [
             "title" => "Puasa senin kamis",
@@ -50,6 +50,44 @@ class DeedTest extends TestCase
         // admin should be able to create public deeds
         $this->assertEquals(
             true, $response->data->public
+        );
+    }
+
+    public function testCreateInvalid()
+    {
+        $data = [
+            "title" => "",
+            "description" => "Puasa setiap hari senin & kamis",
+            "public" => true
+        ];
+        
+        // call endpoint as admin
+        $this->json('POST', '/v1/deeds', $data, [
+            'Authorization' => $this->login(1)
+        ]);
+
+        $response = $this->getJsonResponse();
+
+        $this->assertEquals(
+            400, $response->status
+        );
+    }
+
+    public function testCreateUnathorized()
+    {
+        $data = [
+            "title" => "",
+            "description" => "Puasa setiap hari senin & kamis",
+            "public" => true
+        ];
+        
+        // call endpoint as admin
+        $this->json('POST', '/v1/deeds', $data);
+
+        $response = $this->getJsonResponse();
+
+        $this->assertEquals(
+            401, $response->status
         );
     }
 }
