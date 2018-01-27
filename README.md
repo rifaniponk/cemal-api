@@ -84,8 +84,7 @@ php artisan migrate:refresh --seed
 
 Enter to vagrant box, then run
 ```bash
-cd ~/vagrant/code/cemal-api
-phpunit
+./test.sh
 ```
 
 ## Generate Model
