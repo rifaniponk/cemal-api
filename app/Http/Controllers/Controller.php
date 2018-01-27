@@ -82,7 +82,7 @@ class Controller extends BaseController
      */
     protected function validatePrivilege($right, $object)
     {
-        $granted = \Gate::allows('view', \Auth::user());
+        $granted = \Gate::allows($right, $object);
         if (! $granted) {
             throw new AccessDeniedException();
         }
