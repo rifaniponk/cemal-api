@@ -52,6 +52,59 @@ class DeedService
     }
 
     /**
+     * find deeds by params
+     * @param  array  $params
+     * @param  integer  $limit 
+     * @param  integer $offset
+     * @param  string  $func 	query builder function
+     * @return Collection
+     */
+    public function all($params = array(), $sorts = array(), $limit = null, $offset = 0, $func = 'get')
+    {
+    	$deeds = Deed::where(function ($query){ });
+    	foreach ($params as $key => $value) {
+    		$key = strtolower($key);
+    		if ($key === 'include_public'){
+    			continue;
+    		} else if ($key === 'user_id'){
+    			if (array_key_exists('include_public', $params) && $params['include_public'] === true){
+    				$deeds->where(function ($query) use($key, $value){ 
+    					$query->where($key, $value)
+    						  ->orWhere('public', true);
+    				});
+    			} else {
+    				$deeds->where($key, $value);
+    			}
+    		} else {
+    			$deeds->where($key, $value);
+    		}
+    	}
+
+    	foreach ($sorts as $order) {
+	        foreach ($order as $field => $type) {
+	        	$deeds->orderBy($field, $type);
+	        }
+        }
+
+        if ($limit){
+        	$deeds->limit($limit);
+        }
+
+        $deeds->offset($offset);
+
+        return $deeds->$func();
+    }
+
+    /**
+     * Count number of deeds
+     * @param  array  $params
+     * @return int
+     */
+    public function count($params = array()){
+    	return $this->all($params, array(), null, 0, 'count');
+    }
+
+    /**
      * validate data.
      * @param  array  $data
      * @param  array  $group

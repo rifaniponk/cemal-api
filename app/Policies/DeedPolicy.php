@@ -30,6 +30,17 @@ class DeedPolicy
     }
 
     /**
+     * Determine whether the user can view all off lists of the deed (public & private)
+     * 
+     * @param  User   $user
+     * @return bool
+     */
+    public function lists(User $user)
+    {
+        return $this->isGranted($user, 'deed-lists');
+    }
+
+    /**
      * Determine whether the user can create deeds.
      *
      * @param  Cemal\User  $user

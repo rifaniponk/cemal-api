@@ -24,8 +24,9 @@ class Controller extends BaseController
      * wrap data into json response.
      * @param  array | Object 	$data
      * @param  int 				$status
+     * @param  array  $additional   additional data
      */
-    protected function response($data, $status, $message = null)
+    protected function response($data, $status, $message = null, array $additional = array())
     {
         if (! $message) {
             if ($status === 201) {
@@ -44,12 +45,12 @@ class Controller extends BaseController
                 $message = 'Internal Server Error';
             }
         }
-        $response = [
+
+        $response = array_merge([
             'status' => $status,
             'message' => $message,
             'data' => $data,
-        ];
-
+        ], $additional);
         return response()->json($response, $status);
     }
 
@@ -70,6 +71,10 @@ class Controller extends BaseController
         } else {
             \Log::critical(get_class($e).': '.$e->getMessage());
 
+            if (config('app.env') === 'local'){
+                return $this->response($e->getMessage(), 500);
+            }
+
             return $this->response(null, 500);
         }
     }
@@ -88,5 +93,16 @@ class Controller extends BaseController
         }
 
         return true;
+    }
+
+    /**
+     * check user's privilege.
+     * @param  string $right
+     * @param  string | object $object
+     * @return true if user is granted
+     */
+    protected function isGranted($right, $object)
+    {
+        return \Gate::allows($right, $object);
     }
 }

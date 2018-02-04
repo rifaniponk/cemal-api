@@ -34,6 +34,10 @@ $router->group(['prefix' => 'v1', 'namespace' => '\Cemal\Http\Controllers'], fun
             'middleware'=>'auth',
             'uses'=>'DeedController@create',
         ]);
+        $app->get('/', [
+            'middleware'=>'auth',
+            'uses'=>'DeedController@all',
+        ]);
     });
 });
 
